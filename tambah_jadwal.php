@@ -15,7 +15,7 @@
             <tr><td>Hari</td><td>
                 <select name="hari">
                     <option value="Senin">Senin</option>
-                    <option value="Selasa">Selasa</option>eirjeriew
+                    <option value="Selasa">Selasa</option>nune
                     <option value="Rabu">Rabu</option>
                     <option value="Kamis">Kamis</option>
                     <option value="Jumat">Jumat</option>

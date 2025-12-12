@@ -27,6 +27,7 @@
                 <tr>
                     <th>Hari</th>
                     <th>Waktu</th>
+                    <th></th>
                     <th>Mata Kuliah</th>
                     <th>SKS</th>
                     <th>Nama Ruang</th>

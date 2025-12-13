@@ -1,3 +1,23 @@
+<?php
+session_start();
+$conn = new mysqli('localhost','root','','siamu');
+
+
+if (isset($_POST['login'])) {
+    $nim = $_POST['nim'];
+    $password = md5($_POST['password']); // Menggunakan MD5 sesuai dummy data
+    // Cek data mahasiswa
+    $hasil = $conn->query("SELECT * FROM mahasiswa WHERE nim='$nim' AND password='$password'");
+
+    if ($baris = $hasil->fetch_assoc()) {
+        $_SESSION['nim'] = $row['nim'];
+        $_SESSION['nama'] = $row['nama'];
+        header("Location:registrasi.php"); // Redirect ke halaman utama
+    } else {
+        echo "<script>alert('NIM atau Password salah!');</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

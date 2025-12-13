@@ -33,10 +33,10 @@
                     </td></tr>
                     <tr><td>Waktu</td></tr><tr><td>
                     <select name="waktu" class="form-select">
-                        <option value="07.30-10.20">07.30-10.20</option>
-                        <option value="10.30-13.20">10.30-13.20</option>
-                        <option value="13.20-16.20">13.20-16.20</option>
-                        <option value="16.30-19.20">16.30-19.20</option>
+                        <option value="07.30 - 10.20">07.30 - 10.20</option>
+                        <option value="10.30 - 13.20">10.30 - 13.20</option>
+                        <option value="13.30 - 16.20">13.30 - 16.20</option>
+                        <option value="16.30 - 19.20">16.30 - 19.20</option>
                     </select>
                     </td></tr>
                     <tr><td>Mata Kuliah</td></tr><tr><td>
@@ -74,7 +74,7 @@
                         <div class="d-flex gap-2 mt-4 justify-content-center align-items-center">
                             <button type="submit" class="btn btn-success">Simpan</button>
                             <button type="reset" class="btn btn-secondary">Reset</button>
-                            <button type="#" class="btn btn-warning">Kembali</button>
+                            <button class="btn btn-warning" onclick="goBack()">Kembali</button>
                         </div>
                     </th>
                 </tr>
@@ -83,6 +83,10 @@
         </div>
     </div>
     </div>
-   
+    <script>
+        function goBack() {
+            window.history.back('jadwal.php');
+        }
+    </script>
 </body>
 </html>

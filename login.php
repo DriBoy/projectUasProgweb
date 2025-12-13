@@ -9,15 +9,18 @@
 </head>
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card p-5 shadow-lg" style="width: 450px;">
-        <div class="text-center mb-4 bg-primary p-1" background-color="primary">
-            <h5 class="container text-white ">Login Sistem</h5>
+    <div class="card shadow-lg" style="width: 450px;">
+        <div class="card-header bg-primary">
+            <h5 class="text-center text-white py-1">Login Sistem</h5>
         </div>
-        <label for="nim">NIM</label>
-        <input type="text" class="form-control mb-4" id="nim" placeholder="Masukkan NIM Anda..." />
-        <label for="password">Password</label>
-        <input type="password" class="form-control mb-4" id="password" placeholder="Masukkan Password Anda..." />
-        <button class="btn btn-primary w-100">Login</button>
+        <div class="card-body">
+            <label for="nim">NIM</label>
+            <input type="text" class="form-control mb-4" id="nim" placeholder="Masukkan NIM Anda..." />
+            <label for="password">Password</label>
+            <input type="password" class="form-control mb-4" id="password" placeholder="Masukkan Password Anda..." />
+            <button class="btn btn-primary w-100">Login</button>
+            <p class="text-center mt-2">Belum punya akun? <a href="#">Registrasi</a></p>
+        </div>
     </div>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->

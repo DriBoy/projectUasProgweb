@@ -10,32 +10,25 @@
 <body>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <?php
-        $conn = new mysqli("localhost","root","","siamu");
-    ?>
-    <div class="d-flex justify-content-center align-items-center">
-    <div class="card mb-4 p-4 bg-white shadow-sm" style="width: auto; border-radius: 15px;">
-        <div class="card-header bg-white">
-            <h3>Registrasi Semester Genap Tahun Ajaran 2025/2026</h3>
-        </div>
-        <div class="card-body bg-white">
-            <table>
-                <tr>
-                    <th>NIM</th>
-                    <td>: 72240673</td>
-                </tr>
-                <tr>
-                    <th>Nama</th>
-                    <td>: Stefanus Adrian Kurniawan</td>
-                </tr>
-                <tr>
-                    <th>IPK</th>
-                    <td>: 4.00</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    </div>
+<?php    
+session_start();
+$conn = new mysqli('localhost','root','','siamu');
+
+// Ambil data mahasiswa
+$mhs = $conn->query("SELECT * FROM mahasiswa WHERE nim='$nim'");
+
+// Ambil daftar matkul yang sudah diambil
+$data = $conn->query("SELECT * FROM krs WHERE nim='$nim'");
+?>
+<h3 align="center">Registrasi Semester Genap Tahun Ajaran 2025/2026</h3>
+
+<!-- Kartu informasi mahasiswa -->
+<div style="width:40%; margin:auto; margin-bottom:20px; border:1px solid #000; padding:10px;">
+    <p><strong>NIM</strong> : <?= $mhs['nim'] ?></p>
+    <p><strong>Nama</strong> : <?= $mhs['nama'] ?></p>
+    <p><strong>IPK</strong> : <?= $mhs['ipk'] ?></p>
+</div>
+
     <div class="d-flex justify-content-center align-items-center">
     <div class="card shadow-lg" style="width: auto; border-radius: 15px;">
         <div class="card-header p-0 bg-primary">

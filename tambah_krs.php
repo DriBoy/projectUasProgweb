@@ -14,29 +14,6 @@
         $conn = new mysqli("localhost","root","","siamu");
     ?>
     <div class="d-flex justify-content-center align-items-center">
-    <div class="card mb-4 p-4 bg-white shadow-sm" style="width: auto; border-radius: 15px;">
-        <div class="card-header bg-white">
-            <h3>Registrasi Semester Genap Tahun Ajaran 2025/2026</h3>
-        </div>
-        <div class="card-body bg-white">
-            <table>
-                <tr>
-                    <th>NIM</th>
-                    <td>: 72240673</td>
-                </tr>
-                <tr>
-                    <th>Nama</th>
-                    <td>: Stefanus Adrian Kurniawan</td>
-                </tr>
-                <tr>
-                    <th>IPK</th>
-                    <td>: 4.00</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-    </div>
-    <div class="d-flex justify-content-center align-items-center">
     <div class="card shadow-lg" style="width: auto; border-radius: 15px;">
         <div class="card-header p-0 bg-primary">
             <h5 class="text-white text-center py-2 rounded">Daftar Mata Kuliah Yang Sudah Diambil</h5>
@@ -44,39 +21,34 @@
         <div class="card-body">
             <table border="1" cellpadding="4" style="width: 100%;" class="table table-striped">
                 <tr>
+                    <th>Pilih</th>
                     <th>Hari</th>
                     <th>Waktu</th>
                     <th>Mata Kuliah</th>
                     <th>SKS</th>
                     <th>Ruang</th>
                     <th>Dosen</th>
-                    <th>Aksi</th>
                 </tr>
                 <?php
                 $registrasi = $conn->query("SELECT * FROM view_jadwal");
                 while($brs = $registrasi->fetch_assoc()){
                     echo "<tr>";
+                    echo '<td><input type="checkbox" name="jadwal[]" value="'.$brs['id_jadwal'].'"></td>';
                     echo "<td>".$brs['hari']."</td>";
                     echo "<td>".$brs['waktu']."</td>";
                     echo "<td>".$brs['nama_mk']."</td>";
                     echo "<td>".$brs['sks']."</td>";
                     echo "<td>".$brs['nama_ruang']."</td>";
                     echo "<td>".$brs['nama']."</td>";
-                    echo "<td><button class='btn btn-danger'>Hapus</button></td>";
                     echo "</tr>";
                 }
                 ?>
             </table>
             <div class="d-flex mt-2 justify-content-center align-items-center">
-                <button class="btn btn-success" onclick="tambahJadwal()">Tambah Jadwal</button>
+                <button class="btn btn-success">Simpan KRS</button>
             </div>
         </div>
     </div>
     </div>
-    <script>
-        function tambahJadwal() {
-            window.location.href = "tambah_krs.php";
-        }
-    </script>
 </body>
 </html>

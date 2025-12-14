@@ -5,7 +5,7 @@ require_once("koneksi.php");
 $id_jadwal = $_GET['id_jadwal'];
 
 // ambil data jadwal berdasarkan id
-$sql = $conn->query("SELECT * FROM siamu_jadwal WHERE id_jadwal='$id_jadwal'");
+$sql = $con->query("SELECT * FROM jadwal WHERE id_jadwal='$id_jadwal'");
 $r = $sql->fetch_assoc();
 extract($r); // membuat variabel otomatis: $hari, $waktu, $kode_mk, dll
 ?>
@@ -31,6 +31,7 @@ extract($r); // membuat variabel otomatis: $hari, $waktu, $kode_mk, dll
 <tr>
     <td>Hari</td>
     <td>
+        <select name="hari">
         <?php
         $hari_list = ['Senin','Selasa','Rabu','Kamis','Jumat'];
         foreach($hari_list as $h){
@@ -38,13 +39,6 @@ extract($r); // membuat variabel otomatis: $hari, $waktu, $kode_mk, dll
             echo "<option $cek>$h</option>";
         }
         ?>
-        <select name="hari">
-            <?php
-            foreach($hari_list as $h){
-                $cek = ($hari == $h) ? "selected" : "";
-                echo "<option $cek>$h</option>";
-            }
-            ?>
         </select>
     </td>
 </tr>
@@ -69,7 +63,7 @@ extract($r); // membuat variabel otomatis: $hari, $waktu, $kode_mk, dll
     <td>
         <select name="kode_mk">
         <?php
-        $mk = $conn->query("SELECT * FROM siamu_mata_kuliah");
+        $mk = $con->query("SELECT * FROM mata_kuliah");
         while($m = $mk->fetch_assoc()){
             $cek = ($kode_mk == $m['kode_mk']) ? "selected" : "";
             echo "<option value='$m[kode_mk]' $cek>$m[nama_mk]</option>";
@@ -84,7 +78,7 @@ extract($r); // membuat variabel otomatis: $hari, $waktu, $kode_mk, dll
     <td>
         <select name="nik">
         <?php
-        $dsn = $conn->query("SELECT * FROM dosen");
+        $dsn = $con->query("SELECT * FROM dosen");
         while($d = $dsn->fetch_assoc()){
             $cek = ($nik == $d['nik']) ? "selected" : "";
             echo "<option value='$d[nik]' $cek>$d[nama]</option>";
@@ -99,11 +93,12 @@ extract($r); // membuat variabel otomatis: $hari, $waktu, $kode_mk, dll
     <td>
         <select name="kode_ruang">
         <?php
-        $rg = $conn->query("SELECT * FROM siamu_ruang");
+        $rg = $con->query("SELECT * FROM ruang");
         while($r = $rg->fetch_assoc()){
             $cek = ($kode_ruang == $r['kode_ruang']) ? "selected" : "";
-             }
-            ?>
+            echo "<option value='$r[kode_ruang]' $cek>$r[nama_ruang]</option>";
+        }
+        ?>
         </select>
     </td>
 </tr>

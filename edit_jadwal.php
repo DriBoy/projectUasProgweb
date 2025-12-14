@@ -116,13 +116,21 @@ extract($r);
 
             <!-- Tombol submit dan kembali -->
             <div class="d-flex justify-content-between">
-                <button type="submit" class="btn btn-primary">Simpan</button>
+                <button type="submit" class="btn btn-primary" onclick="simpanJadwal()">Simpan</button>
                 <a href="jadwal.php" class="btn btn-secondary">Kembali</a>
             </div>
+            <?php
+            
+            ?>
         </form>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        function simpanJadwal() {
+            window.location.href = "update_jadwal.php";
+        }
+    </script>
 </body>
 </html>

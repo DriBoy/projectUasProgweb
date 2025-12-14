@@ -8,7 +8,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.bootstrap5.css">
-    
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    rel="stylesheet">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
 <body class="bg-light">
@@ -40,7 +44,7 @@
                             echo "<td>".$brs['sks']."</td>";
                             echo "<td>".$brs['nama_ruang']."</td>";
                             echo "<td>".$brs['nama']."</td>";
-                            echo "<td><button type='button' class='btn btn-warning me-1'>Edit</button><button type='button' class='btn btn-danger'>Hapus</button></td>";
+                            echo "<td><button type='button' class='btn btn-warning me-1' onclick=\"editJadwal({$brs['id_jadwal']})\">Edit</button><button type='button' class='btn btn-danger' onclick=\"hapusJadwal(event, '{$brs['id_jadwal']}')\">Hapus</button></td>";
                             echo "</tr>";
                         }
                     ?>
@@ -59,6 +63,27 @@
     <script>
         function tambahJadwal() {
             window.location.href = "tambah_jadwal.php";
+        };
+        function editJadwal(id_jadwal) {
+            window.location.href = "edit_jadwal.php?id_jadwal=" + id_jadwal;
+        };
+        function hapusJadwal(event, id_jadwal) {
+            event.preventDefault(); // Mencegah halaman langsung pindah
+
+            Swal.fire({
+            title: "Yakin ingin menghapus data ini?",
+            text: "Data yang dihapus tidak dapat dikembalikan!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Ya, hapus!",
+            cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "hapus_jadwal.php?id_jadwal=" + id_jadwal;
+                }
+            });
         }
         new DataTable('#example', {
             paging: true,

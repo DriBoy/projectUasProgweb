@@ -1,18 +1,31 @@
 <?php
+// Memuat file koneksi database
 include 'koneksi.php';
+
+// Cek apakah id_jadwal ada di URL
+if (!isset($_GET['id_jadwal'])) {
+    die("ID jadwal tidak ditemukan");
+}
 
 $id_jadwal = $_GET['id_jadwal'];
 
-$query = "DELETE FROM jadwal WHERE id_jadwal = '$id_jadwal'";
-// if (mysqli_query($con, $query)) {
-//     echo "Jadwal berhasil dihapus.";
-//     header("Location: jadwal.php"); // Redirect kembali ke jadwal.php
-// } else {
-//     echo "Error: " . mysqli_error($con);
-// }
+// Query untuk menghapus jadwal
+$SQL = "DELETE FROM jadwal WHERE id_jadwal = '$id_jadwal'";
 
-mysqli_close($con);
+// Eksekusi query
+if ($conn->query($SQL) === TRUE) {
+    // Jika berhasil, redirect ke jadwal.php
+    header("Location: jadwal.php");
+    exit;
+} else {
+    // Jika gagal, tampilkan error
+    echo "Error: " . $SQL . "<br>" . $conn->error;
+}
+
+// Tutup koneksi
+$con->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

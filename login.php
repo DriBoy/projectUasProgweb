@@ -1,7 +1,6 @@
 <?php
 session_start();
-$conn = new mysqli('localhost','root','','siamu');
-
+include_once("koneksi.php");
 
 if (isset($_POST['login'])) {
     $nim = $_POST['nim'];
@@ -18,32 +17,36 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Login Page</title>
+    <title>Login Sistem</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="d-flex justify-content-center align-items-center vh-100">
-    <div class="card shadow-lg" style="width: 450px;">
-        <div class="card-header bg-primary">
-            <h5 class="text-center text-white py-1">Login Sistem</h5>
+<body class="bg-light d-flex align-items-center justify-content-center" style="height: 100vh;">
+
+    <div class="card shadow" style="width: 400px;">
+        <div class="card-header bg-primary text-white text-center">
+            <h4>Login Sistem</h4>
         </div>
         <div class="card-body">
-            <label for="nim">NIM</label>
-            <input type="text" class="form-control mb-4" id="nim" placeholder="Masukkan NIM Anda..." />
-            <label for="password">Password</label>
-            <input type="password" class="form-control mb-4" id="password" placeholder="Masukkan Password Anda..." />
-            <button class="btn btn-primary w-100">Login</button>
-            <p class="text-center mt-2">Belum punya akun? <a href="#">Registrasi</a></p>
+            <form action="registrasi.php" method="post">
+                <div class="mb-3">
+                    <label>NIM</label>
+                    <input type="text" name="nim" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" required>
+                </div>
+                <button type="submit" name="login" class="btn btn-primary w-100">Login</button>
+                <div class="text-center mt-3">
+                    <small>Belum punya akun? <a href="#">Registrasi</a></small>
+                </div>
+            </form>
         </div>
     </div>
-    </div>
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 </body>
 </html>

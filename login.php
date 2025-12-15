@@ -1,23 +1,3 @@
-<?php
-session_start();
-include_once("koneksi.php");
-
-if (isset($_POST['login'])) {
-    $nim = $_POST['nim'];
-    $password = md5($_POST['password']); // Menggunakan MD5 sesuai dummy data
-    // Cek data mahasiswa
-    $hasil = $conn->query("SELECT * FROM mahasiswa WHERE nim='$nim' AND password='$password'");
-
-    if ($baris = $hasil->fetch_assoc()) {
-        $_SESSION['nim'] = $row['nim'];
-        $_SESSION['nama'] = $row['nama'];
-        header("Location:registrasi.php"); // Redirect ke halaman utama
-    } else {
-        echo "<script>alert('NIM atau Password salah!');</script>";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +11,7 @@ if (isset($_POST['login'])) {
             <h4>Login Sistem</h4>
         </div>
         <div class="card-body">
-            <form action="registrasi.php" method="post">
+            <form action="" method="post">
                 <div class="mb-3">
                     <label>NIM</label>
                     <input type="text" name="nim" class="form-control" required>
@@ -47,6 +27,31 @@ if (isset($_POST['login'])) {
             </form>
         </div>
     </div>
+<?php
+session_start();
+include_once("koneksi.php");
+
+if (isset($_POST['login'])) {
+    $nim = $_POST['nim'];
+    $password = md5($_POST['password']); 
+
+    $hasil = $conn->query("SELECT m.nim, m.nama, r.no_reg FROM mahasiswa m 
+                           JOIN registrasi r ON m.nim = r.nim
+                           WHERE m.nim='$nim' AND m.password='$password'");
+    if ($baris = $hasil->fetch_assoc()) {
+        // SET SEMUA SESSION YANG DIPERLUKAN
+        $_SESSION['nim']    = $baris['nim'];
+        $_SESSION['nama']   = $baris['nama'];
+        $_SESSION['no_reg'] = $baris['no_reg']; 
+        header("Location: registrasi.php");
+        exit;
+
+    } else {
+        echo "<script>alert('NIM atau Password salah!');</script>";
+    }
+}
+?>
+
 
 </body>
 </html>

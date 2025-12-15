@@ -6,6 +6,10 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -19,6 +23,8 @@
             <h5 class="text-white text-center py-2 rounded">Daftar Mata Kuliah Yang Sudah Diambil</h5>
         </div>
         <div class="card-body">
+            <!-- ✅ FORM -->
+            <form  id="formKRS" action="simpan_krs.php" method="post">
             <table border="1" cellpadding="4" style="width: 100%;" class="table table-striped">
                 <tr>
                     <th>Pilih</th>
@@ -44,11 +50,29 @@
                 }
                 ?>
             </table>
-            <div class="d-flex mt-2 justify-content-center align-items-center">
-                <button class="btn btn-success">Simpan KRS</button>
+            <div class="text-center pt-4">
+                <button type="button" class="btn btn-success" onclick="konfirmasiSimpan()">Simpan KRS</button>
+            </div>
+            </form>    
             </div>
         </div>
     </div>
     </div>
+   <script>
+function konfirmasiSimpan() {
+    Swal.fire({
+        title: "Yakin ingin menyimpan KRS?",
+        text: "Mata kuliah yang dipilih akan disimpan",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonText: "Ya, simpan!",
+        cancelButtonText: "Batal"
+    }).then((result) => {
+        if (result.isConfirmed) {
+             document.getElementById("formKRS").submit();
+        }
+    });
+}
+</script>
 </body>
 </html>

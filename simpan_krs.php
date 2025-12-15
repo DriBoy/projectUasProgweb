@@ -33,5 +33,31 @@ foreach ($jadwal as $id_jadwal) {
 }
 
 // 🔁 kembali ke halaman registrasi
-header("Location: registrasi.php");
-exit;
+// header("Location: registrasi.php");
+// exit;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    rel="stylesheet">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <script>
+        Swal.fire({
+        title: "Berhasil!",
+        text: "Data KRS Berhasil Disimpan!",
+        icon: "success",
+        timer: 2000,
+        }).then(() => {
+            window.location.href = 'registrasi.php';
+        });
+    </script>
+</body>
+</html>

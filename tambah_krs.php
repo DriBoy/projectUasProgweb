@@ -59,20 +59,20 @@
     </div>
     </div>
    <script>
-function konfirmasiSimpan() {
-    Swal.fire({
-        title: "Yakin ingin menyimpan KRS?",
-        text: "Mata kuliah yang dipilih akan disimpan",
-        icon: "question",
-        showCancelButton: true,
-        confirmButtonText: "Ya, simpan!",
-        cancelButtonText: "Batal"
-    }).then((result) => {
-        if (result.isConfirmed) {
-             document.getElementById("formKRS").submit();
+        function konfirmasiSimpan() {
+            Swal.fire({
+                title: "Yakin ingin menyimpan KRS?",
+                text: "Mata kuliah yang dipilih akan disimpan",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonText: "Ya, simpan!",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById("formKRS").submit();
+                }
+            });
         }
-    });
-}
-</script>
+    </script>
 </body>
 </html>

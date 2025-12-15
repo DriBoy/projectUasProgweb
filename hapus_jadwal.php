@@ -1,6 +1,6 @@
 <?php
 // Memuat file koneksi database
-include 'koneksi.php';
+require_once("koneksi.php");
 
 // Cek apakah id_jadwal ada di URL
 if (!isset($_GET['id_jadwal'])) {
@@ -13,17 +13,19 @@ $id_jadwal = $_GET['id_jadwal'];
 $SQL = "DELETE FROM jadwal WHERE id_jadwal = '$id_jadwal'";
 
 // Eksekusi query
-if ($conn->query($SQL) === TRUE) {
-    // Jika berhasil, redirect ke jadwal.php
-    header("Location: jadwal.php");
-    exit;
-} else {
-    // Jika gagal, tampilkan error
-    echo "Error: " . $SQL . "<br>" . $conn->error;
-}
+// if ($conn->query($SQL) === TRUE) {
+//     // Jika berhasil, redirect ke jadwal.php
+//     header("Location: jadwal.php");
+//     exit;
+// } else {
+//     // Jika gagal, tampilkan error
+//     echo "Error: " . $SQL . "<br>" . $conn->error;
+// }
+
+$result = mysqli_query($conn, $SQL);
 
 // Tutup koneksi
-$con->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -39,16 +41,26 @@ $con->close();
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    
+    <script>
+        if(<?=$result?>) {
+            Swal.fire({
+            title: "Berhasil!",
+            text: "Data Jadwal Berhasil Dihapus!",
+            icon: "success",
+            timer: 2000,
+            }).then(() => {
+                window.location.href = 'jadwal.php';
+            });
+        } else {
+            Swal.fire({
+            title: "Gagal!",
+            text: "Data Jadwal Gagal Dihapus!",
+            icon: "error",
+            timer: 2000,
+            }).then(() => {
+                window.location.href = 'jadwal.php';
+            });
+        }
+    </script>
 </body>
 </html>
-<script>
-    Swal.fire({
-    title: "Berhasil!",
-    text: "Data Mahasiswa Berhasil Dihapus!",
-    icon: "success",
-    timer: 2000,
-    }).then(() => {
-        window.location.href = 'jadwal.php';
-    });
-</script>

@@ -11,7 +11,7 @@ $kode_mk    = $_POST['kode_mk'];
 $nik        = $_POST['nik'];     
 
 $query = "UPDATE jadwal SET hari='$hari',waktu='$waktu',kode_ruang='$kode_ruang',kode_mk='$kode_mk',nik='$nik'WHERE id_jadwal='$id_jadwal'";
-$result = mysqli_query($con, $query);
+$result = mysqli_query($conn, $query);
 
 ?>
 
@@ -50,4 +50,4 @@ $result = mysqli_query($con, $query);
         }
     </script>
 </body>
-</html>
+</html> 

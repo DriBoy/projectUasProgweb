@@ -34,7 +34,6 @@ include_once("koneksi.php");
 if (isset($_POST['login'])) {
     $nim = $_POST['nim'];
     $password = md5($_POST['password']); 
-
     $hasil = $conn->query("SELECT m.nim, m.nama, r.no_reg FROM mahasiswa m 
                            JOIN registrasi r ON m.nim = r.nim
                            WHERE m.nim='$nim' AND m.password='$password'");
